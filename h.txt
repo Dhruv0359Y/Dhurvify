@@ -1,0 +1,22 @@
+//Show all the songs in the playlist
+    let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0];
+    songUL.innerHTML = ""
+    for (const song of songs) {
+        songUL.innerHTML = songUL.innerHTML + `<li><img class="invert" src="music.svg" alt="">
+                        <div class="info">
+                            <div> ${song.replaceAll("%20", " ")}</div>
+                            <div>Dhruv</div>
+                        </div>
+                        <div class="playnow">
+                            <span>Play now</span>
+                            <img class = " invert"src="play.svg" alt="">
+                        </div>
+                    </li>`;
+    }
+    //Attach an event listener to all song
+    Array.from(document.querySelector(".songList").getElementsByTagName("li")).forEach(e => {
+        e.addEventListener("click", element => {
+            console.log(e.querySelector(".info").firstElementChild.innerHTML);
+            playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim());
+        })
+    });
